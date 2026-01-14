@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def list_index(request):
+    return render(request, "lists/index.html")
