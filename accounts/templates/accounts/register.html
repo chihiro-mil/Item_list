@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account register</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">
+</head>
+<body>
+    <h1 class="register-title">アカウント登録画面</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="id_name">ユーザー名</label>
+            <input type="text" name="username" value="{{ username|default:'' }}" id="id_username" required>
+        </div>
+        <div>
+            <label for="id_email">メールアドレス</label>
+            <input type="email" name="email" value="{{ email|default:'' }}" id="id_email" required>
+        </div>
+        <div>
+            <label for="id_password">パスワード</label>
+            <input type="password" name="password" id="id_password" required>
+        </div>
+
+        <button type="submit" class="register-button">アカウント登録</button>
+    
+</body>
+</html>
