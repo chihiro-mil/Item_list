@@ -10,22 +10,63 @@
 <body>
     <h1 class="register-title">アカウント登録画面</h1>
 
-    <form method="post">
+    <form method="post" action="">
         {% csrf_token %}
-        <div>
-            <label for="id_name">ユーザー名</label>
-            <input type="text" name="username" value="{{ username|default:'' }}" id="id_username" required>
+        <div class="register-form-group">
+            <label for="id_username">ユーザー名</label>
+            <input type="text" name="username" value="{{ username|default:'' }}" id="id_username" autocomplete="username">
+            <p class="help-text">※１～２０文字</p>
+
+            {% if errors.username %}
+                <ul class="register-error-message">
+                    {% for error in errors.username %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </div>
-        <div>
+        <div class="register-form-group">
             <label for="id_email">メールアドレス</label>
-            <input type="email" name="email" value="{{ email|default:'' }}" id="id_email" required>
+            <input type="email" name="email" value="{{ email|default:'' }}" id="id_email" autocomplete="email">
+            <p class="help-text">※〇〇＠〇〇.〇〇</p>
+
+            {% if errors.email %}
+                <ul class="register-error-message">
+                    {% for error in errors.email %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </div>
-        <div>
-            <label for="id_password">パスワード</label>
-            <input type="password" name="password" id="id_password" required>
+        <div class="register-form-group">
+            <label for="id_password1">パスワード</label>
+            <input type="password" name="password1" id="id_password1" autocomplete="new-password">
+            <p class="help-text">※８文字以上＋英字と数字を両方含める</p>
+
+            {% if errors.password1 %}
+                <ul class="register-error-message">
+                    {% for error in errors.password1 %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="register-form-group">
+            <label for="id_password2">確認用パスワード</label>
+            <input type="password" name="password2" id="id_password2" autocomplete="new-password">
+            <p class="help-text">※再度同じパスワードを入力</p>
+
+            {% if errors.password2 %}
+                <ul class="register-error-message">
+                    {% for error in errors.password2 %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </div>
 
         <button type="submit" class="register-button">アカウント登録</button>
+    </form>
     
 </body>
 </html>
