@@ -18,3 +18,10 @@
     background-color: #4da3ff;
     border: none;
 }
+
+.register-link a {
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.2s;
+}
